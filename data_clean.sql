@@ -33,9 +33,10 @@ alter table course_time drop id;
 select ct.id, ct.duration, ct.time, ct.units, ct.user, 
 ifnull(user1.title, ifnull(user2.title, user3.title)) as title, 
 ifnull(user1.is_paid, ifnull(user2.is_paid, user3.is_paid)) as paid,
-ifnull(user1.price, ifnull(user2.price, user3.price)) as price from course_time ct
+ifnull(user1.price, ifnull(user2.price, user3.price)) as price,
+ifnull(user1.rating, ifnull(user2.rating, user3.rating)) as rating,
+ifnull(user1.num_reviews, ifnull(user2.num_reviews, user3.num_reviews)) as num_reviews from course_time ct
 left join priyaprem08 user1 on ct.id = user1.id
 left join priyadharshini170898 user2 on ct.id = user2.id
-left join priyadharshini221099 user3 on ct.id = user3.id
-order by ct.user, ct.units, ct.time, paid;
+left join priyadharshini221099 user3 on ct.id = user3.id;
 
